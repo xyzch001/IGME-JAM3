@@ -14,23 +14,26 @@ public class Controller : MonoBehaviour {
 
     private bool isGrounded = true;
 
+    
     // Use this for initialization
     void Start()
     {
         //Get and store a reference to the Rigidbody2D component so that we can access it.
         rb2d = GetComponent<Rigidbody2D>();
 
-        
+       
     }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        isGrounded = true;
+         isGrounded = true;
+
     }
 
     //FixedUpdate is called at a fixed interval and is independent of frame rate. Put physics code here.
     void FixedUpdate()
     {
+        
         if (isCharacter) Movement();
         else Movement2();
 
