@@ -61,7 +61,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Barrier.cs" />
+    <Compile Include="Assets\Scripts\BarrierBlack.cs" />
+    <Compile Include="Assets\Scripts\BarrierBlue.cs" />
     <Compile Include="Assets\Scripts\Controller.cs" />
+    <Compile Include="Assets\Scripts\End.cs" />
+    <Compile Include="Assets\Scripts\Move.cs" />
+    <Compile Include="Assets\Scripts\MoveBlock.cs" />
+    <Compile Include="Assets\Scripts\Star.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>E:/learning/WeihaoYan/Prototyping/IGME-JAM3/Platformer/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
