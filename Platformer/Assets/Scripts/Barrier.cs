@@ -1,8 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Barrier : MonoBehaviour {
+
+    public Text text1;
 
     private bool isActive = true;
     Renderer barrier;
@@ -17,28 +21,34 @@ public class Barrier : MonoBehaviour {
         
 	}
 
-    
+    void LoadScene1()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
+    }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter(Collider collision)
     { 
         if(collision.gameObject.tag == "blue" && isActive)
         {
+            text1.text = "You Lose!!!";
             Debug.Log("You lose");
+            Invoke("LoadScene1", 1.5f);
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerStay(Collider collision)
     {
         if (collision.gameObject.tag == "red")
         {
             isActive = false;
             Color barrierColor = barrier.material.color;
-            barrierColor.a = Mathf.Lerp(barrierColor.a, 0.5f, Time.deltaTime);
+            barrierColor.a = Mathf.Lerp(barrierColor.a, 0.0f, Time.deltaTime);
             barrier.material.color = barrierColor;
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit(Collider collision)
     {
         if (collision.gameObject.tag == "red")
         {

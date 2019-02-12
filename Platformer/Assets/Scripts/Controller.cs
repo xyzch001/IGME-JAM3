@@ -10,30 +10,28 @@ public class Controller : MonoBehaviour {
 
     public float verticalSpeed;
 
-    private Rigidbody2D rb2d;       //Store a reference to the Rigidbody2D component required to use 2D Physics.
+    private Rigidbody rb;       //Store a reference to the Rigidbody2D component required to use 2D Physics.
+
 
     private bool isGrounded = true;
 
-    
     // Use this for initialization
     void Start()
     {
         //Get and store a reference to the Rigidbody2D component so that we can access it.
-        rb2d = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody>();
 
-       
-    }
-
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-         isGrounded = true;
 
     }
+
+
 
     //FixedUpdate is called at a fixed interval and is independent of frame rate. Put physics code here.
     void FixedUpdate()
     {
-        
+        isGrounded = Physics.Raycast(transform.position, -Vector3.up, 1.0f);
+
+
         if (isCharacter) Movement();
         else Movement2();
 
@@ -42,16 +40,20 @@ public class Controller : MonoBehaviour {
     void Movement()
     {
 
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.A))
         {
-            //Store the current horizontal input in the float moveHorizontal.
-            float moveHorizontal = Input.GetAxis("Horizontal");
+            ////Store the current horizontal input in the float moveHorizontal.
+            //float moveHorizontal = Input.GetAxis("Horizontal");
 
-            //Store the current vertical input in the float moveVertical.
-            float moveVertical = Input.GetAxis("Vertical");
+            ////Store the current vertical input in the float moveVertical.
+            //float moveVertical = Input.GetAxis("Vertical");
 
 
-            transform.Translate(Vector3.right * moveHorizontal * speed * Time.deltaTime);
+            transform.Translate(-Vector3.right * speed * Time.deltaTime);
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            transform.Translate(Vector3.right * speed * Time.deltaTime);
         }
 
 
@@ -59,32 +61,36 @@ public class Controller : MonoBehaviour {
 
         //Use the two store floats to create a new Vector2 variable movement.
         //Vector3 movement = new Vector3(moveHorizontal * speed * Time.deltaTime, 0.0f, 0.0f);
-        Vector2 movement1 = new Vector2(0.0f, 1.0f);
+        Vector2 movement1 = new Vector3(0.0f, 1.0f, 0.0f);
         //Call the AddForce function of our Rigidbody2D rb2d supplying movement multiplied by speed to move our player.
 
-        
+
 
 
 
         if (Input.GetKey(KeyCode.W) && isGrounded)
         {
-            rb2d.AddForce(movement1 * verticalSpeed);
-            isGrounded = false;
+            rb.AddForce(movement1 * verticalSpeed);
+
         }
     }
 
     void Movement2()
     {
-        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
-            //Store the current horizontal input in the float moveHorizontal.
-            float moveHorizontal = Input.GetAxis("Horizontal");
+            ////Store the current horizontal input in the float moveHorizontal.
+            //float moveHorizontal = Input.GetAxis("Horizontal");
 
-            //Store the current vertical input in the float moveVertical.
-            float moveVertical = Input.GetAxis("Vertical");
+            ////Store the current vertical input in the float moveVertical.
+            //float moveVertical = Input.GetAxis("Vertical");
 
 
-            transform.Translate(Vector3.right * moveHorizontal * speed * Time.deltaTime);
+            transform.Translate(-Vector3.right * speed * Time.deltaTime);
+        }
+        else if (Input.GetKey(KeyCode.RightArrow))
+        {
+            transform.Translate(Vector3.right * speed * Time.deltaTime);
         }
 
 
@@ -92,7 +98,7 @@ public class Controller : MonoBehaviour {
 
         //Use the two store floats to create a new Vector2 variable movement.
         //Vector3 movement = new Vector3(moveHorizontal * speed * Time.deltaTime, 0.0f, 0.0f);
-        Vector2 movement1 = new Vector2(0.0f, 1.0f);
+        Vector2 movement1 = new Vector3(0.0f, 1.0f, 0.0f);
         //Call the AddForce function of our Rigidbody2D rb2d supplying movement multiplied by speed to move our player.
 
 
@@ -101,10 +107,12 @@ public class Controller : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.UpArrow) && isGrounded)
         {
-            rb2d.AddForce(movement1 * verticalSpeed);
-            isGrounded = false;
+            rb.AddForce(movement1 * verticalSpeed);
+
         }
     }
 
+
+    
  
 }
