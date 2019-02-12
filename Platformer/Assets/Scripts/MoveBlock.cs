@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class MoveBlock : MonoBehaviour {
 
-
-    public delegate void isTouch();
-    public static event isTouch Touch;
-
+    private bool isMove = false;
+    //public delegate void isTouch();
+    //public static event isTouch Touch;
+    
 
     // Use this for initialization
     void Start () {
@@ -22,11 +22,19 @@ public class MoveBlock : MonoBehaviour {
 		
 	}
 
-
+    public bool getIsMove()
+    {
+        return isMove;
+    }
 
     private void OnTriggerStay(Collider collision)
     {
-        Touch();
+        isMove = true;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        isMove = false;
     }
 
 }

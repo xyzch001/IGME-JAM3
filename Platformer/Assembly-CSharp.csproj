@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\End.cs" />
     <Compile Include="Assets\Scripts\Move.cs" />
     <Compile Include="Assets\Scripts\MoveBlock.cs" />
+    <Compile Include="Assets\Scripts\MoveUpOrDown.cs" />
     <Compile Include="Assets\Scripts\Star.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>E:/learning/WeihaoYan/Prototyping/IGME-JAM3/Platformer/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>

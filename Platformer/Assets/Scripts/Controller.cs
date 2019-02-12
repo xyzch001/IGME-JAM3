@@ -18,6 +18,7 @@ public class Controller : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        Screen.SetResolution(1920, 1080, true);
         //Get and store a reference to the Rigidbody2D component so that we can access it.
         rb = GetComponent<Rigidbody>();
 
